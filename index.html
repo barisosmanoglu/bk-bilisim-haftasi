@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Sayfası</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            max-width: 300px; /* Logo boyutunu ayarlayabilirsiniz */
+            height: auto;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+            color: #343a40;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 500px; /* Butonların maksimum genişliğini ayarlayabilirsiniz */
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+        }
+        h6{
+            margin-bottom: 15px;
+        }
+        .mavi{
+            background-color: rgb(58, 90, 219);
+            color: white;
+        }
+        .kirmizi{
+            background-color: rgb(206, 24, 24);
+        }
+        .yazi{
+            color: white;
+            text-decoration: none;
+        }
+        .yazi:hover{
+            color: beige;
+        }
+        .yazi:visited{
+            color: white;
+            text-decoration: none;
+        }
+
+        footer{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="bahcesehir-logo.png" alt="" class="logo">
+    </div>
+
+    <h1>BİLİŞİM HAFTASI'NA HOŞGELDİNİZ</h1>
+
+    <h6> OYUNLAR VE BİLMECELER SİZİ BEKLİYOR :) </h6>
+
+    <div class="button-container">
+
+       <a href="adamasmaca.html" target="_blank">
+        <button type="button" class="btn btn-primary btn-large">Adam Asmaca Oyunu</button>
+       </a>
+       <a href="anagram.html" target="_blank">
+        <button type="button" class="btn btn-danger btn-large">Anagram Oyunu</button>
+       </a>
+       <a href="soru.html" target="_blank">
+        <button type="button" class="btn btn-primary btn-large">Quiz Oyunu</button>
+       </a>
+       <a href="kodlama.html" target="_blank">
+        <button type="button" class="btn btn-danger btn-large">Programlama Oyunu</button>
+       </a>
+    </div>
+
+    
+   <!--ŞAŞIRTICI BİLGİLER BÖLÜMÜ-->
+
+   <div class="container mt-5">
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header mavi" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link yazi" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Tuşlarım var ama piyano değilim, ekranım var ama televizyon değilim. Cebine girerim, dünyayı gösteririm. Neyim ben?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    Telefon
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header kirmizi" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed yazi" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Görünmez iplerle dünyayı sararım, bilgi taşırım, mesajları ulaştırırım. Ama ne elim var ne de ayağım. Neyim ben?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    İnternet
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header mavi" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed yazi" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Düğmeye basarsın, sihir başlar, rakamlar dans eder, sonuçlar çıkar. Ama ne sihirbazım ne de dansçıyım. Neyim ben?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    Bilgisayar
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header kirmizi" id="headingFour">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed yazi" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Yanlış yapınca seni geri döndürürüm, tıpkı sihirli bir değnek gibi. Üç tuşla kahraman olurum. Neyim ben?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                <div class="card-body">
+                    Ctrl+Z Komutu (Geri Al)
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header mavi" id="headingFive">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed yazi" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Küçücük bir kutuyum, binlerce şarkı, film ve bilgi saklarım. Cebinde taşır, istediğin zaman açarsın. Neyim ben?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                <div class="card-body">
+                    Hafıza Kartı / USB Bellek
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header kirmizi" id="headingSix">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed yazi" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Gözüm her yerde, seni izlerim, ama kötü niyetim yoktur. Güvenliği sağlarım, dijital dünyada nöbet tutarım. Neyim ben?
+
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                <div class="card-body">
+                    Kamera (Web Kamerası / Güvenlik Kamerası)
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header mavi" id="headingSeven">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed yazi" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Sanal dünyalar yaratırım, kahramanlar olur, maceralara atılırsın. Ama gerçek değilim, sadece bir ekran yansımasıyım. Neyim ben?
+
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+                <div class="card-body">
+                    Bilgisayar Oyunu / Sanal Gerçeklik
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header kirmizi" id="headingEight">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed yazi" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        Sessiz harflerle konuşurum, makinelere emirler veririm. Onları çalıştırır, hayallerini gerçeğe dönüştürürüm. Neyim ben?
+
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
+                <div class="card-body">
+                    Kod (Yazılım Dili)
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header mavi" id="headingNine">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed yazi" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Postacıyım ama zarfım yok, mektup taşımam. Saniyeler içinde mesajları bir uçtan diğer uca götürürüm. Neyim ben?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
+                <div class="card-body">
+                    E-posta
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header kirmizi" id="headingTen">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed yazi" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        Minik bir kutuyum, koca bir kütüphane taşırım. Neyim ben?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordion">
+                <div class="card-body">
+                    BE-kitap okuyucu / Tablet
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+   <!--ŞAŞIRTICI BİLGİLER BÖLÜMÜ-->
+
+<footer class="footer">
+   Barış Osmanoğlu, Bahçeşehir Koleji (2025 Bilişim Haftası)
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
