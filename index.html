@@ -155,16 +155,22 @@
         }
 
         footer {
-            margin-top: 30px; /* Margin'i azalttım */
-            padding: 15px; /* Padding'i azalttım */
-            text-align: center;
-            color: #777;
-            font-size: 0.8rem; /* Font boyutunu küçülttüm */
-            border-top: 1px solid #eee;
-            width: 100%;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.4s forwards;
-        }
+        margin-top: 30px;
+        padding: 15px;
+        text-align: center;
+        font-size: 0.8rem;
+        border-top: 1px solid #eee;
+        width: 100%;
+        opacity: 0;
+        animation: fadeIn 1s ease-out 1.4s forwards;
+    }
+
+    footer span.gradient-text {
+        background: linear-gradient(to right, #00308F, #dc3545);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold; /* İsteğe bağlı olarak kalın yapabilirsiniz */
+    }
 
         /* Küçük ekranlar için (telefonlar) */
         @media (max-width: 576px) {
@@ -251,7 +257,7 @@
     </div>
 
     <footer class="footer">
-        Barış Osmanoğlu, Bahçeşehir Koleji (2025 Bilişim Haftası)
+       <span class="gradient-text" >Barış Osmanoğlu</span> , Bahçeşehir Koleji (2025 Bilişim Haftası)
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
