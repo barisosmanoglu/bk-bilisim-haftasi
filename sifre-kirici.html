@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><span style="color: #007bff; font-weight: bold;">Şifre Kırıcı</span> - <span style="color: #28a745;">Bilişim Haftası</span> 🔄</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            color: #343a40;
+            padding-top: 30px;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        #gameDesc {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #6c757d;
+        }
+        #level {
+            font-size: 1.1em;
+            color: #007bff;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        #encryptedWord {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            font-size: 1.8em;
+            margin: 20px auto;
+            border-radius: 8px;
+            width: fit-content;
+            color: #dc3545;
+            font-weight: bold;
+        }
+        #input {
+            padding: 12px;
+            font-size: 1.5em;
+            width: 250px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        #score, #wrong, #timer {
+            font-size: 1.1em;
+            margin-top: 10px;
+            color: #28a745;
+        }
+        #wrong {
+            color: #dc3545;
+        }
+        #timer {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        #restart {
+            font-size: 1.1em;
+            padding: 12px 25px;
+            margin-top: 25px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        #restart:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1><span style="color: #007bff; font-weight: bold;">Şifre Kırıcı</span> - <span style="color: #28a745;">Bilişim Haftası</span> 🔄</h1>
+    <p id="gameDesc">Ekranda ters çevrilmiş bilişim terimini görüp doğru halini yaz! Seviyeler ilerledikçe kelimeler daha zor olacak.</p>
+    <p id="level">Seviye: <span id="currentLevel" style="color: #007bff;">1</span></p>
+    <div id="encryptedWord">Şifrelenmiş Kelime</div>
+    <input type="text" id="input" placeholder="Kelimeyi buraya yazın">
+    <div id="score">✅ Doğru: <span id="correctWords" style="color: #28a745;">0</span></div>
+    <div id="wrong">❌ Yanlış: <span id="wrongWords" style="color: #dc3545;">0</span></div>
+    <div id="timer">⏳ Süre: <span id="time" style="color: #ffc107; font-weight: bold;">60</span> saniye</div>
+    <button id="restart">🔄 Yeniden Başlat</button>
+
+    <script>
+        const levels = [
+            ["kod", "web", "veri", "app"],   // Seviye 1 - Basit bilişim terimleri
+            ["bilgi", "sistem", "internet", "robot"],   // Seviye 2 - Orta düzey terimler
+            ["bilgisayar", "yazılım", "donanım", "sunucu"],   // Seviye 3 - Daha uzun kelimeler
+            ["kriptografi", "algoritma", "mühendislik", "simülasyon"],   // Seviye 4 - Karmaşık terimler
+            ["yapayzeka", "nesnetabanlı", "siber güvenlik", "makine öğrenme"]   // Seviye 5 - En zor terimler
+        ];
+
+        let time = 60;
+        let score = 0;
+        let wrongScore = 0;
+        let currentLevel = 0;
+        let timerInterval;
+        let currentWord = "";
+
+        function reverseText(text) {
+            return text.split("").reverse().join(""); // Ters çevirme işlemi
+        }
+
+        function setWord() {
+            if (currentLevel < levels.length) {
+                currentWord = levels[currentLevel][Math.floor(Math.random() * levels[currentLevel].length)];
+                document.getElementById("encryptedWord").innerText = reverseText(currentWord);
+            } else {
+                alert(`🎉 Tebrikler! En yüksek seviyeye ulaştın! ✅ Doğru: ${score}, ❌ Yanlış: ${wrongScore}`);
+                clearTimeout(timerInterval);
+            }
+        }
+
+        function updateTimer() {
+            if (time > 0) {
+                time--;
+                document.getElementById("time").innerText = time;
+                timerInterval = setTimeout(updateTimer, 1000);
+            } else {
+                alert(`Oyun Bitti! ⏱️ Süreniz Doldu! ✅ Doğru: ${score}, ❌ Yanlış: ${wrongScore}`);
+                clearTimeout(timerInterval);
+            }
+        }
+
+        document.getElementById("input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                if (this.value === currentWord) {
+                    score++;
+                    document.getElementById("correctWords").innerText = score;
+
+                    if (score % 4 === 0 && currentLevel < levels.length - 1) {
+                        currentLevel++;   // Seviyeyi artır
+                        document.getElementById("currentLevel").innerText = currentLevel + 1;
+                    }
+                } else {
+                    wrongScore++;
+                    document.getElementById("wrongWords").innerText = wrongScore;
+                }
+                this.value = "";
+                setWord();
+            }
+        });
+
+        document.getElementById("restart").addEventListener("click", function() {
+            time = 60;
+            score = 0;
+            wrongScore = 0;
+            currentLevel = 0;
+            document.getElementById("time").innerText = time;
+            document.getElementById("correctWords").innerText = score;
+            document.getElementById("wrongWords").innerText = wrongScore;
+            document.getElementById("currentLevel").innerText = currentLevel + 1;
+            clearTimeout(timerInterval);
+            setWord();
+            updateTimer();
+        });
+
+        setWord();
+        updateTimer();
+    </script>
+</body>
+</html>

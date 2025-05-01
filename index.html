@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BK Bilişim Haftası</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 30px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Logo Titreme Efekti */
+        .logo-container {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: slideInDown 1s ease-out 0.2s forwards, pulse 2s infinite alternate;
+        }
+
+        @keyframes slideInDown {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* Başlık Stilleri (Montserrat Fontu ve İmleç Efekti) */
+        h1 {
+            margin-bottom: 50px;
+            color: #00308F;
+            font-size: 2.8rem;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s ease-out 0.5s forwards, blink-caret .75s step-end infinite;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+            padding-right: 10px;
+            border-right: .05em solid #333;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #333; }
+        }
+
+        h6 {
+            margin-bottom: 25px;
+            color: #555;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.8s forwards;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 450px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-large {
+            padding: 18px 35px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .btn-large:hover,
+        .btn-large:active {
+            opacity: 0.8;
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background-color: #00308F;
+            border-color: #00308F;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #dc3545; /* Kırmızı renk */
+            border-color: #dc3545;
+            color: white;
+        }
+
+        .card {
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+        }
+
+        .card-header {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .mavi {
+            background: linear-gradient(to right, #00308F, #3776AB);
+        }
+
+        .kirmizi {
+            background: linear-gradient(to right, #dc3545, #e06c75); /* Kırmızıdan daha açık tona geçiş */
+        }
+
+        .yazi {
+            color: white !important;
+            text-decoration: none !important;
+            font-weight: bold;
+        }
+
+        .yazi:hover {
+            color: #eee !important;
+        }
+
+        .yazi:visited {
+            color: white !important;
+        }
+
+        .card-body {
+            padding: 15px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            width: 100%;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.4s forwards;
+        }
+
+        .preface-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            border: 5px solid;
+            border-image: linear-gradient(to right, #00308F, #dc3545) 1;
+        }
+    
+        .preface-title {
+            color: #00308F;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+    
+        .preface-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            line-height: 1.7;
+            color: #333;
+            font-size: 1.1rem;
+        }
+    
+        .preface-card p {
+            margin-bottom: 15px;
+        }
+    
+        .preface-signature {
+            text-align: right;
+            font-style: italic;
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="bahcesehir-logo.png" alt="" class="logo">
+    </div>
+
+    <h1>BİLİŞİM HAFTASI'NA HOŞGELDİNİZ</h1>
+
+    <div class="preface-container">
+        <div class="preface-card">
+            <p>Sevgili öğrenciler, öğretmenler ve bilişim meraklıları,</p>
+            <p>Geleceğin şekillendiği, teknolojinin sınırlarının zorlandığı ve inovasyonun kalbinin attığı Bilişim Haftası'na hoş geldiniz! Bu özel hafta boyunca, dijital dünyanın büyüleyici ve sonsuz olanaklarını keşfetmek için bir araya geliyoruz...</p>
+            <p>Bilişim, hayatımızın her köşesine nüfuz eden, dünyayı dönüştüren ve geleceğimizi inşa eden güçlü bir araçtır. Bu hafta boyunca, yazılımın büyüsünden yapay zekanın heyecan verici dünyasına, siber güvenliğin kritik öneminden web geliştirmenin yaratıcı gücüne kadar bilişimin farklı alanlarına doğru keyifli bir yolculuğa çıkacağız...</p>
+            <p>Sizleri bekleyen birbirinden ilgi çekici etkinliklerle dolu bir program hazırladık: Geleceğin Teknolojileri, Kodlama Atölyeleri, Siber Güvenlik Farkındalığı, Oyun Geliştirme, Bilişim Kariyerleri, Eğlenceli Yarışmalar ve Etkinlikler...</p>
+            <p>Bilişim Haftası, sadece öğrenmekle kalmayıp aynı zamanda dijital dünyayla etkileşim kurmak, yeni beceriler kazanmak ve geleceğin teknolojilerine olan merakınızı daha da artırmak için eşsiz bir fırsat sunuyor. Unutmayın, bugünün dijital okuryazarları yarının liderleri olacak!</p>
+            <p>Gelin, bu heyecan verici yolculukta bize katılın ve bilişimin sonsuz dünyasının kapılarını birlikte aralayalım!</p>
+            <p class="preface-signature">Sevgi ve heyecanla,<br>Robotik ve Kodlama Zümresi</p>
+        </div>
+    </div>
+    
+    <div class="button-container">
+        <a href="adamasmaca.html" target="_blank">
+            <button type="button" class="btn btn-primary btn-large">Adam Asmaca Oyunu</button>
+        </a>
+        <a href="anagram.html" target="_blank">
+            <button type="button" class="btn btn-danger btn-large">Anagram Oyunu</button>
+        </a>
+        <a href="bilmeceler.html" target="_blank">
+            <button type="button" class="btn btn-primary btn-large">Bilmeceler</button>
+        </a>
+        <a href="hizli-yazma.html" target="_blank">
+            <button type="button" class="btn btn-danger btn-large">Hızlı Yazma Oyunu</button>
+        </a>
+        <a href="kodlama.html" target="_blank">
+            <button type="button" class="btn btn-primary btn-large">Kodlama Bilgi Testi</button>
+        </a>
+        <a href="python-oyunu.html" target="_blank">
+            <button type="button" class="btn btn-danger btn-large">Python Kodlama Oyunu</button>
+        </a>
+        <a href="soru.html" target="_blank">
+            <button type="button" class="btn btn-primary btn-large">Quiz</button>
+        </a>
+        <a href="sifre-kirici.html" target="_blank">
+            <button type="button" class="btn btn-danger btn-large">Şifre Çözme Oyunu</button>
+        </a>
+    </div>
+
+    
+    <footer class="footer">
+        Barış Osmanoğlu, Bahçeşehir Koleji (2025 Bilişim Haftası)
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

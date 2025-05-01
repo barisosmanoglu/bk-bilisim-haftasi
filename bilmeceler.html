@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilmeceler - BK Bilişim Haftası</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #e4e0ce, #ffedc4); /* Canlı sarı-turuncu gradyan */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 30px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #3f51b5; /* Mor */
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .bilmece-kart {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            text-align: left;
+            position: relative;
+            border-left: 5px solid #4caf50; /* Yeşil vurgu */
+        }
+
+        .bilmece-ikon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: #e91e63; /* Pembe */
+            opacity: 0.7;
+        }
+
+        .bilmece {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .cevap-button {
+            background-color: #e91e63; /* Pembe buton */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .cevap-button:hover {
+            background-color: #c2185b; /* Daha koyu pembe */
+            transform: scale(1.05);
+        }
+
+        .cevap-alan {
+            margin-top: 15px;
+            overflow: hidden;
+            height: 0;
+            transition: height 0.4s ease-out, opacity 0.4s ease-out;
+            opacity: 0;
+        }
+
+        .cevap-alan.goster {
+            height: auto;
+            opacity: 1;
+        }
+
+        .cevap {
+            font-size: 1.1rem;
+            color: #555;
+            padding: 15px;
+            background-color: #f0f4c3; /* Açık limon yeşili */
+            border-radius: 6px;
+            border: 1px solid #dce775; /* Daha koyu limon yeşili çerçeve */
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>BİLMECELER</h1>
+
+    <div class="bilmece-kart">
+        <i class="fas fa-mobile-alt bilmece-ikon"></i>
+        <p class="bilmece">Tuşlarım var ama piyano değilim, ekranım var ama televizyon değilim. Cebine girerim, dünyayı gösteririm. Neyim ben?</p>
+        <button class="cevap-button" onclick="gosterCevap('cevap1')">Cevabı Göster</button>
+        <div id="cevap1" class="cevap-alan">
+            <p class="cevap">Telefon</p>
+        </div>
+    </div>
+
+    <div class="bilmece-kart">
+        <i class="fas fa-globe bilmece-ikon"></i>
+        <p class="bilmece">Görünmez iplerle dünyayı sararım, bilgi taşırım, mesajları ulaştırırım. Ama ne elim var ne de ayağım. Neyim ben?</p>
+        <button class="cevap-button" onclick="gosterCevap('cevap2')">Cevabı Göster</button>
+        <div id="cevap2" class="cevap-alan">
+            <p class="cevap">İnternet</p>
+        </div>
+    </div>
+
+    <div class="bilmece-kart">
+        <i class="fas fa-desktop bilmece-ikon"></i>
+        <p class="bilmece">Düğmeye basarsın, sihir başlar, rakamlar dans eder, sonuçlar çıkar. Ama ne sihirbazım ne de dansçıyım. Neyim ben?</p>
+        <button class="cevap-button" onclick="gosterCevap('cevap3')">Cevabı Göster</button>
+        <div id="cevap3" class="cevap-alan">
+            <p class="cevap">Bilgisayar</p>
+        </div>
+    </div>
+
+    <div class="bilmece-kart">
+        <i class="fas fa-undo bilmece-ikon"></i>
+        <p class="bilmece">Yanlış yapınca seni geri döndürürüm, tıpkı sihirli bir değnek gibi. Üç tuşla kahraman olurum. Neyim ben?</p>
+        <button class="cevap-button" onclick="gosterCevap('cevap4')">Cevabı Göster</button>
+        <div id="cevap4" class="cevap-alan">
+            <p class="cevap">Ctrl+Z Komutu (Geri Al)</p>
+        </div>
+    </div>
+
+    <div class="bilmece-kart">
+        <i class="fas fa-sd-card bilmece-ikon"></i>
+        <p class="bilmece">Küçücük bir kutuyum, binlerce şarkı, film ve bilgi saklarım. Cebinde taşır, istediğin zaman açarsın. Neyim ben?</p>
+        <button class="cevap-button" onclick="gosterCevap('cevap5')">Cevabı Göster</button>
+        <div id="cevap5" class="cevap-alan">
+            <p class="cevap">Hafıza Kartı / USB Bellek</p>
+        </div>
+    </div>
+
+    <div class="bilmece-kart">
+        <i class="fas fa-video bilmece-ikon"></i>
+        <p class="bilmece">Gözüm her yerde, seni izlerim, ama kötü niyetim yoktur. Güvenliği sağlarım, dijital dünyada nöbet tutarım. Neyim ben?</p>
+        <button class="cevap-button" onclick="gosterCevap('cevap6')">Cevabı Göster</button>
+        <div id="cevap6" class="cevap-alan">
+            <p class="cevap">Kamera (Web Kamerası / Güvenlik Kamerası)</p>
+        </div>
+    </div>
+
+    <div class="bilmece-kart">
+        <i class="fas fa-vr-cardboard bilmece-ikon"></i>
+        <p class="bilmece">Sanal dünyalar yaratırım, kahramanlar olur, maceralara atılırsın. Ama gerçek değilim, sadece bir ekran yansımasıyım. Neyim ben?</p>
+        <button class="cevap-button" onclick="gosterCevap('cevap7')">Cevabı Göster</button>
+        <div id="cevap7" class="cevap-alan">
+            <p class="cevap">Bilgisayar Oyunu / Sanal Gerçeklik</p>
+        </div>
+    </div>
+
+    <div class="bilmece-kart">
+        <i class="fas fa-code bilmece-ikon"></i>
+        <p class="bilmece">Sessiz harflerle konuşurum, makinelere emirler veririm. Onları çalıştırır, hayallerini gerçeğe dönüştürürüm. Neyim ben?</p>
+        <button class="cevap-button" onclick="gosterCevap('cevap8')">Cevabı Göster</button>
+        <div id="cevap8" class="cevap-alan">
+            <p class="cevap">Kod (Yazılım Dili)</p>
+        </div>
+    </div>
+
+    <div class="bilmece-kart">
+        <i class="fas fa-envelope bilmece-ikon"></i>
+        <p class="bilmece">Postacıyım ama zarfım yok, mektup taşımam. Saniyeler içinde mesajları bir uçtan diğer uca götürürüm. Neyim ben?</p>
+        <button class="cevap-button" onclick="gosterCevap('cevap9')">Cevabı Göster</button>
+        <div id="cevap9" class="cevap-alan">
+            <p class="cevap">E-posta</p>
+        </div>
+    </div>
+
+    <div class="bilmece-kart">
+        <i class="fas fa-book-open bilmece-ikon"></i>
+        <p class="bilmece">Minik bir kutuyum, koca bir kütüphane taşırım. Neyim ben?</p>
+        <button class="cevap-button" onclick="gosterCevap('cevap10')">Cevabı Göster</button>
+        <div id="cevap10" class="cevap-alan">
+            <p class="cevap">E-kitap okuyucu / Tablet</p>
+        </div>
+    </div>
+
+    <footer>
+        Barış Osmanoğlu, Bahçeşehir Koleji (2025 Bilişim Haftası)
+    </footer>
+
+    <script>
+        function gosterCevap(id) {
+            var cevapAlani = document.getElementById(id);
+            cevapAlani.classList.toggle('goster');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilişim Turu - Trivia Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f9; /* Modern gri tonlarında arka plan */
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff; /* Beyaz arka plan */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #1e3a8a; /* Modern mavi */
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .question-container {
+            margin-bottom: 20px;
+        }
+        .answer-option {
+            background-color: #4b8bfb; /* Soft mavi */
+            color: white;
+            padding: 12px;
+            margin: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .answer-option:hover {
+            background-color: #357ae8; /* Daha koyu mavi */
+        }
+        .answer-option.correct {
+            background-color: #34d399; /* Yeşil */
+        }
+        .answer-option.incorrect {
+            background-color: #f87171; /* Kırmızı */
+        }
+        .feedback {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .score-container {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 30px;
+        }
+        .btn {
+            background-color: #1e3a8a; /* Modern mavi */
+            color: white;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #3346a2; /* Daha koyu mavi */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Bilgi Yarışması</h1>
+    <div class="question-container" id="question-container">
+        <!-- İlk soru yüklenecek burası -->
+    </div>
+    <div id="answer-options"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="score-container" id="score-container"></div>
+    <button class="btn" id="start-btn" onclick="startQuiz()">Teste Başla</button>
+    <button class="btn" id="next-btn" onclick="loadNextQuestion()" style="display:none;">Sonraki Soru</button>
+</div>
+
+<script>
+    const questions = [
+        {
+            question: "Hangi programlama dili, özellikle web geliştirme için kullanılır?",
+            options: ["Python", "Java", "HTML", "C++"],
+            correct: 2,
+        },
+        {
+            question: "Veri tabanı yönetim sistemi olarak en yaygın kullanılan yazılım hangisidir?",
+            options: ["MySQL", "Excel", "Notepad", "Photoshop"],
+            correct: 0,
+        },
+        {
+            question: "IP adresi nedir?",
+            options: ["İnternete bağlanan her cihazın benzersiz kimlik numarası", "Cihazların birbiriyle haberleşmesini sağlayan yazılım", "Web sayfası adresi", "Bir ağın şifresi"],
+            correct: 0,
+        },
+        {
+            question: "Makine öğrenmesi hangi alanda en yaygın olarak kullanılır?",
+            options: ["Oyun geliştirme", "Yüz tanıma", "Görsel düzenleme", "Yazılım testleri"],
+            correct: 1,
+        },
+        {
+            question: "Siber saldırıların amacı nedir?",
+            options: ["Web sitelerini yavaşlatmak", "Veri çalmak", "E-posta göndermek", "Yazılım geliştirmek"],
+            correct: 1,
+        },
+        {
+            question: "CPU nedir?",
+            options: ["Grafik işlem birimi", "Ana işlem birimi", "Bellek yönetim birimi", "Ağ yönetim birimi"],
+            correct: 1,
+        },
+        {
+            question: "Android işletim sistemi hangi şirket tarafından geliştirilmiştir?",
+            options: ["Apple", "Google", "Microsoft", "IBM"],
+            correct: 1,
+        },
+        {
+            question: "Bulut bilişimde hangi veri depolama yöntemi kullanılır?",
+            options: ["Yerli sunucular", "USB bellekler", "Halka açık veri merkezleri", "Bulut servis sağlayıcıları"],
+            correct: 3,
+        },
+        {
+            question: "Responsive tasarım neyi ifade eder?",
+            options: ["Bir web sitesinin sadece masaüstü bilgisayarlar için tasarlanması", "Web sitesinin cihazlara göre uyumlu olması", "Veritabanı yönetim sistemi", "Yazılım geliştirme dili"],
+            correct: 1,
+        },
+        {
+            question: "Bilişim etiği nedir?",
+            options: ["Yazılım geliştirme sürecinde etik kurallara uyulması", "Web tasarımında özgünlük", "Veri güvenliği kurallarına uyulması", "Yapay zeka ile etik problemler"],
+            correct: 0,
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function startQuiz() {
+        document.getElementById("start-btn").style.display = "none"; // Teste Başla butonunu gizle
+        loadQuestion(currentQuestionIndex);
+        document.getElementById("next-btn").style.display = "block"; // Sonraki soru butonunu göster
+    }
+
+    function loadQuestion(questionIndex) {
+        const question = questions[questionIndex];
+        document.getElementById("question-container").innerHTML = `<p id="question-text">${question.question}</p>`;
+
+        const answerOptionsContainer = document.getElementById("answer-options");
+        answerOptionsContainer.innerHTML = "";
+        question.options.forEach((option, index) => {
+            const answerElement = document.createElement("div");
+            answerElement.classList.add("answer-option");
+            answerElement.textContent = option;
+            answerElement.setAttribute("data-index", index);
+            answerElement.addEventListener("click", handleAnswerSelection);
+            answerOptionsContainer.appendChild(answerElement);
+        });
+
+        // Temizle geri bildirim
+        document.getElementById("feedback").textContent = "";
+        document.getElementById("next-btn").style.display = "none"; // Sonraki butonu gizle
+    }
+
+    function handleAnswerSelection(event) {
+        const selectedOptionIndex = parseInt(event.target.getAttribute("data-index"));
+        const correctOptionIndex = questions[currentQuestionIndex].correct;
+
+        if (selectedOptionIndex === correctOptionIndex) {
+            event.target.classList.add("correct");
+            document.getElementById("feedback").textContent = "Doğru Cevap!";
+            score += 10; // Puan ekle
+        } else {
+            event.target.classList.add("incorrect");
+            document.getElementById("feedback").textContent = "Yanlış Cevap! Doğru Cevap: " + questions[currentQuestionIndex].options[correctOptionIndex];
+        }
+
+        // Cevaplandıktan sonra sonraki butonunu göster
+        document.getElementById("next-btn").style.display = "block";
+        updateScore();
+    }
+
+    function loadNextQuestion() {
+        if (currentQuestionIndex < questions.length - 1) {
+            currentQuestionIndex++;
+            loadQuestion(currentQuestionIndex);
+        } else {
+            // Sonuç ekranı
+            const successMessage = (score === questions.length * 10) ? "Tebrikler! 10'da 10 yaptınız!" : `Tebrikler! ${score / 10} doğru cevabınız var.`;
+            document.getElementById("question-container").innerHTML = `<h2>${successMessage}</h2>`;
+            document.getElementById("feedback").textContent = "";
+            document.getElementById("next-btn").style.display = "none"; // Sonraki butonu gizle
+
+            // Sadece başarı mesajını göster ve puanı gizle
+            document.getElementById("answer-options").style.display = "none"; // Cevap seçeneklerini gizle
+        }
+    }
+
+    function updateScore() {
+        document.getElementById("score-container").textContent = `Puanınız: ${score}`;
+    }
+
+    // İlk soruyu yükle
+    window.onload = function() {
+        document.getElementById("next-btn").style.display = "none"; // Test başlama öncesi butonu gizle
+    };
+</script>
+</body>
+</html>
